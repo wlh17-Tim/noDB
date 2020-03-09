@@ -1,13 +1,16 @@
 import React from 'react'
 
-function Display(){
-
+function Display(props){
+console.log(props)
     return(
-        <div className="display">
-            <div>this is an image</div>
-            <p>Monster name</p>
-            <p>Monster trait</p>
-            <button>Delete</button>
+        <div className="display-output">
+            <div className="display">
+                <img src={props.monsterImage} />
+                {/* <p>Monster name</p> */}
+                <p>{props.monsterTrait}</p>
+                <p>{props.name}</p>
+                <button>Save</button>
+            </div>
         </div>
         )
     }

@@ -8,8 +8,8 @@ const PORT = 3456;
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/monsterPic/:id", pc.getMonsterPic);
-app.get("/api/monsterTrait/:id", tc.getMonsterTrait)
+app.get("/api/monster/:color/:month/:name", pc.getMonsterInfo);
+// app.post("/api/newMonster", )
 
 // app.get("/api/pokemon", pokemonCtrl.getCaughtPokemon)
 // app.post("/api/pokemon", pokemonCtrl.catchPokemon)

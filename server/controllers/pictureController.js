@@ -33,12 +33,75 @@ const monsterPic = [
     }
 ]
 
-module.exports = {
-    getMonsterPic: (req, res) => {
-        console.log(req.params.id)
-        const {id} = req.params
-        const picture = monsterPic.find(monsterPic => monsterPic.id === id)
+const monsterTrait = [
+    {
+        id: 'January',
+        trait: 'A'
+    },
+    {
+        id: 'February',
+        trait: 'B'
+    },
+    {
+        id: 'March',
+        trait: 'C'
+    },
+    {
+        id: 'April',
+        trait: 'D'
+    },
+    {
+        id: 'May',
+        trait: 'E'
+    },
+    {
+        id: 'June',
+        trait: 'F'
+    },
+    {
+        id: 'July',
+        trait: 'G'
+    },
+    {
+        id: 'August',
+        trait: 'H'
+    },
+    {
+        id: 'September',
+        trait: 'I'
+    },
+    {
+        id: 'October',
+        trait: 'J'
+    },
+    {
+        id: 'November',
+        trait: 'K'
+    },
+    {
+        id: 'December',
+        trait: 'L'
+    }
+]
 
-        res.status(200).send(picture)
-    } 
+const newMonster= []
+
+module.exports = {
+    getMonsterInfo: (req, res) => {
+        console.log(req.params)
+        const {color, month} = req.params
+        let newObj = {}
+        const picture = monsterPic.find(monsterPic => monsterPic.id === color)
+        const trait = monsterTrait.find(monsterTrait => monsterTrait.id === month)
+        newObj.pic = picture.pic
+        newObj.trait = trait.trait
+        newObj.name = name.name
+
+        res.status(200).send(newObj)
+    },
+    
+    createMonster: (req,res) => {
+        const {name, birthMonth, favoriteColor} =req.body
+        newMonster.push()
+    }
 }

@@ -29,13 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="main">
-          <Input />
-          <div className="display-output">
-            <Output />
-            <Display />
-          </div>
-        </div>
+        <Input />
         <Saved />
         <footer>Footery Type Things</footer>
       </div>

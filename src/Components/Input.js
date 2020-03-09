@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import axios from 'axios'
+import Display from './Display'
 
 class Input extends Component {
     constructor(){
@@ -6,7 +8,9 @@ class Input extends Component {
         this.state = {
             name: '',
             birthMonth: '',
-            favoriteColor: ''
+            favoriteColor: '',
+            monsterImage: '',
+            monsterTrait: ''
         }
     }
 
@@ -30,46 +34,64 @@ class Input extends Component {
     }
 
     createMonster = () => {
-        this.setState({
-            name: '',
-            birthMonth: '',
-            favoriteColor: ''
-        })
+        if(this.state.birthMonth && this.state.favoriteColor){
+            axios.get(`/api/monster/${this.state.favoriteColor}/${this.state.birthMonth}`)
+            .then(response => {
+                this.setState({
+                    monsterImage: response.data.pic,
+                    monsterTrait: response.data.trait
+                })
+            })
+            this.setState({
+                name: '',
+                birthMonth: '',
+                favoriteColor: ''
+            })
+        }
     }
 
     render(){
+        console.log(this.state.monsterImage)
+        console.log(this.state.monsterTrait)
+        // console.log(this.state.favoriteColor)
+        // console.log(this.state.birthMonth)
         return(
-            <div className='input-boxes'>
-                <p>First Name:</p>
-                <input onChange={(e) => this.handleNameChange(e.target.value)}/>
-                <p>Birth Month:</p>
-                <select value={this.state.birthMonth} onChange={this.handleBirthChange} id="months">
-                    <option value="january">January</option>
-                    <option value="february">February</option>
-                    <option value="march">March</option>
-                    <option value="april">April</option>
-                    <option value="may">May</option>
-                    <option value="june">June</option>
-                    <option value="july">July</option>
-                    <option value="august">August</option>
-                    <option value="september">September</option>
-                    <option value="october">October</option>
-                    <option value="november">November</option>
-                    <option value="december">December</option>
-                </select>
-                <p>Favorite Color</p>
-                <select value={this.state.favoriteColor} onChange={this.handleColorChange} id="colors">
-                    <option value="red">Red</option>
-                    <option value="orange">Orange</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="green">Green</option>
-                    <option value="blue">Blue</option>
-                    <option value="purple">Purple</option>
-                    <option value="pink">Pink</option>
-                    <option value="black">Black</option>
+            <div className="main">
+                <div className='input-boxes'>
+                    <p>First Name:</p>
+                    <input onChange={(e) => this.handleNameChange(e.target.value)}/>
+                    <p>Birth Month:</p>
+                    <select value={this.state.birthMonth} onChange={this.handleBirthChange} id="months">
+                        <option value=""></option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                    <p>Favorite Color</p>
+                    <select value={this.state.favoriteColor} onChange={this.handleColorChange} id="colors">
+                        <option value=""></option>
+                        <option value="Red">Red</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Pink">Pink</option>
+                        <option value="Black">Black</option>
 
-                </select>
-                <button className="create-button">Create</button>
+                    </select>
+                    <button className="create-button"onClick={() => this.createMonster()}>Create</button>
+                </div>
+                <Display monsterImage={this.state.monsterImage} monsterTrait={this.state.monsterTrait} name={this.state.name}/>
             </div>
         )
     }
