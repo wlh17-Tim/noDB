@@ -1,15 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-// const grassCtrl = require("./controllers/");
-// const pokemonCtrl = require("./controllers/")
+const pc = require('./controllers/pictureController')
 
 const app = express();
 const PORT = 3456;
 
-// app.use(cors());
-// app.use(express.json());
+app.use(cors());
+app.use(express.json());
 
-// app.get("/api/wild-pokemon", grassCtrl.getWildPokemon);
+app.get("/api/monsterPic/:id", pc.getMonsterPic);
+app.get("/api/monsterTrait/:id", tc.getMonsterTrait)
 
 // app.get("/api/pokemon", pokemonCtrl.getCaughtPokemon)
 // app.post("/api/pokemon", pokemonCtrl.catchPokemon)

@@ -11,9 +11,20 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
+      
 
     }
   }
+
+  componentDidMount(){
+    axios.get('/api/monsterPic')
+      .then(res => {
+        this.setState({
+          monsterPic: res.data
+        })
+      })
+  }
+
   render(){
     return (
       <div className="App">
