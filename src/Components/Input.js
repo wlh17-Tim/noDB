@@ -12,7 +12,8 @@ class Input extends Component {
 
     handleNameChange = (firstName) => {
         this.setState({
-            name: firstName
+            name: firstName,
+
         })
     }
 
@@ -22,15 +23,26 @@ class Input extends Component {
         })
     }
 
+    handleColorChange = (event) => {
+        this.setState({
+            favoriteColor: event.target.value
+        })
+    }
 
+    createMonster = () => {
+        this.setState({
+            name: '',
+            birthMonth: '',
+            favoriteColor: ''
+        })
+    }
 
     render(){
         return(
             <div className='input-boxes'>
-                <p>Name:</p>
+                <p>First Name:</p>
                 <input onChange={(e) => this.handleNameChange(e.target.value)}/>
                 <p>Birth Month:</p>
-                {/* <input list="months" type="text" onChange={(e) => this.handleBirthChange(e.target.value)}/> */}
                 <select value={this.state.birthMonth} onChange={this.handleBirthChange} id="months">
                     <option value="january">January</option>
                     <option value="february">February</option>
@@ -46,7 +58,17 @@ class Input extends Component {
                     <option value="december">December</option>
                 </select>
                 <p>Favorite Color</p>
-                <input />
+                <select value={this.state.favoriteColor} onChange={this.handleColorChange} id="colors">
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                    <option value="black">Black</option>
+
+                </select>
                 <button className="create-button">Create</button>
             </div>
         )
